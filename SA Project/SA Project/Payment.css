@@ -1,0 +1,166 @@
+﻿/* الإعدادات الأساسية */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* حاوية النموذج الرئيسية */
+.payment-container {
+    background-color: #ffffff;
+    padding: 30px 35px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+/* العناوين والفقرات */
+h1 {
+    color: #274c74;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+p {
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ملخص الدفع */
+.order-summary {
+    background-color: #e9f5ff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+    .order-summary h2 {
+        color: #0056b3;
+        font-size: 1.2em;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .summary-item.total {
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #333;
+    }
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #e1e4e8;
+    margin: 25px 0;
+}
+
+/* ========= تنسيق خيارات الدفع ========= */
+
+.payment-method-selection {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.method-label {
+    flex: 1;
+    display: flex; 
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #ced4da;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: right;
+    transition: all 0.3s;
+    font-weight: 500;
+    background-color: #f8f9fa;
+}
+
+    /* عند اختيار الخيار */
+    .method-label input[type="radio"]:checked {
+        accent-color: #007bff; 
+        border-color: #007bff;
+        background-color: #e9f5ff;
+    }
+
+    /* مسافة بين زر الراديو والنص */
+    .method-label input[type="radio"] {
+        margin-left: 10px;
+    }
+
+/* ======= تفاصيل البطاقة ======= */
+
+.card-details-section {
+    border: 1px dashed #007bff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    background-color: #f0f7ff;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* حقول الإدخال */
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.expiry-group, .cvv-group {
+    flex: 1;
+}
+
+/* زر الدفع */
+.pay-btn {
+    background-color: #274c74;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+    .pay-btn:hover {
+        background-color: #274c74d8;
+    }
