@@ -1,0 +1,237 @@
+:root {
+    --primary: #1e3a8a; /* deep blue */
+    --primary-light: #3b82f6; /* bright blue */
+    --primary-lightest: #eff6ff; /* light blue bg */
+    --secondary: #10b981; /* medical green */
+    --dark: #1f2937;
+    --text: #4b5563;
+    --light: #f3f4f6;
+    --white: #ffffff;
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--white) 0%, var(--primary-lightest) 100%);
+}
+
+.home-button {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 1000;
+    background-color: var(--white);
+    color: var(--primary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.home-button:hover {
+    background-color: var(--primary-light);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+.login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-wrapper {
+    width: 450px;
+    height: 600px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    position: relative;
+}
+
+#chk {
+    display: none;
+}
+
+.signup, .login {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    transition: transform 0.6s ease-in-out;
+}
+
+.signup {
+    z-index: 1;
+}
+
+.login {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: var(--white);
+    z-index: 2;
+    transform: translateY(85%); /* The header of login shows at the bottom */
+    border-radius: 60% 40% 0 0 / 15% 15% 0 0;
+}
+
+/* Animations based on checkbox */
+#chk:checked ~ .signup {
+    transform: translateY(-85%);
+}
+
+#chk:checked ~ .login {
+    transform: translateY(0);
+    border-radius: 0;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.logo-header {
+    text-align: center;
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo-header.light {
+    color: var(--white);
+}
+
+h2 {
+    text-align: center;
+    color: var(--dark);
+    font-size: 2rem;
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.login h2 {
+    color: var(--white);
+    margin-top: 10px;
+}
+
+.login p {
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+input {
+    width: 100%;
+    padding: 14px 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: var(--dark);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background: var(--white);
+}
+
+.login input {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+}
+
+.login input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+.login input:focus {
+    background: rgba(255,255,255,0.2);
+    border-color: var(--white);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-light);
+    color: var(--white);
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+}
+
+button:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.login button {
+    background: var(--white);
+    color: var(--primary);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.login button:hover {
+    background: var(--f3f4f6);
+}
+
+/* Toggle Form label */
+.toggle-form {
+    text-align: center;
+    margin-top: auto;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.toggle-form.light {
+    color: rgba(255,255,255,0.8);
+}
+
+.toggle-link {
+    color: var(--primary-light);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.toggle-form.light .toggle-link {
+    color: var(--white);
+}

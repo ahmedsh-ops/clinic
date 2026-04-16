@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PureSmile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="StylesLogin.css">
+</head>
+
+<body>
+    <a href="Home.html" class="home-button">
+        <i class="fa-solid fa-house"></i>
+    </a>
+
+    <div class="login-container">
+        <div class="login-wrapper">
+            <input type="checkbox" id="chk" aria-hidden="true">
+
+            <div class="signup">
+                <form>
+                    <div class="logo-header">
+                        <i class="fa-solid fa-tooth"></i> PureSmile
+                    </div>
+                    <h2>Create Account</h2>
+
+                    <input id="Username" type="text" placeholder="Username" required>
+                    <input id="email" type="email" placeholder="Email" required>
+                    <input id="number" type="number" placeholder="Mobile Phone" required>
+                    <input id="password" type="password" placeholder="Password" required>
+
+                    <button type="submit">Sign up</button>
+
+                    <div class="toggle-form">
+                        Already have an account? <label for="chk" class="toggle-link">Login here</label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="login">
+                <form>
+                    <div class="logo-header light">
+                        <i class="fa-solid fa-tooth"></i> PureSmile
+                    </div>
+                    <h2>Welcome Back</h2>
+                    <p>Login to book and manage your appointments</p>
+
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+
+                    <button type="submit">Login</button>
+
+                    <div class="toggle-form light">
+                        Don't have an account? <label for="chk" class="toggle-link">Sign up</label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keep script so functionality works -->
+    <script src="login.js"></script>
+</body>
+
+</html>
