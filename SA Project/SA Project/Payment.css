@@ -1,141 +1,102 @@
-﻿/* الإعدادات الأساسية */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f7f6;
+.payment-container {
+    padding-top: 120px;
+    padding-bottom: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-}
-
-/* حاوية النموذج الرئيسية */
-.payment-container {
-    background-color: #ffffff;
-    padding: 30px 35px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 500px;
+    min-height: calc(100vh - 120px);
 }
 
-/* العناوين والفقرات */
-h1 {
-    color: #274c74;
+.form-card {
+    background: var(--white);
+    padding: 50px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 700px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.form-card h1 {
+    font-size: 2.2rem;
+    color: var(--dark);
+    margin-bottom: 10px;
     text-align: center;
-    margin-bottom: 5px;
 }
 
-p {
-    color: #6c757d;
+.form-card p {
+    color: var(--text);
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
 }
 
-/* ملخص الدفع */
 .order-summary {
-    background-color: #e9f5ff;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 25px;
+    background: var(--primary-lightest);
+    padding: 25px;
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-    .order-summary h2 {
-        color: #0056b3;
-        font-size: 1.2em;
-        margin-top: 0;
-        margin-bottom: 10px;
-    }
-
-.summary-item {
-    display: flex;
-    justify-content: space-between;
+.order-summary h2 {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+    padding-bottom: 10px;
 }
 
-    .summary-item.total {
-        font-weight: bold;
-        font-size: 1.1em;
-        color: #333;
-    }
-
-hr {
-    border: 0;
-    height: 1px;
-    background-color: #e1e4e8;
-    margin: 25px 0;
+.summary-details {
+    font-size: 0.95rem;
 }
-
-/* ========= تنسيق خيارات الدفع ========= */
 
 .payment-method-selection {
     display: flex;
-    justify-content: space-around;
-    gap: 15px;
+    gap: 20px;
     margin-bottom: 30px;
 }
 
 .method-label {
     flex: 1;
-    display: flex; 
-    align-items: center;
-    padding: 15px;
-    border: 2px solid #ced4da;
-    border-radius: 10px;
+    position: relative;
     cursor: pointer;
-    text-align: right;
-    transition: all 0.3s;
-    font-weight: 500;
-    background-color: #f8f9fa;
 }
 
-    /* عند اختيار الخيار */
-    .method-label input[type="radio"]:checked {
-        accent-color: #007bff; 
-        border-color: #007bff;
-        background-color: #e9f5ff;
-    }
+.method-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
 
-    /* مسافة بين زر الراديو والنص */
-    .method-label input[type="radio"] {
-        margin-left: 10px;
-    }
+.method-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    color: var(--text);
+    background: var(--white);
+}
 
-/* ======= تفاصيل البطاقة ======= */
+.method-box i {
+    font-size: 1.8rem;
+}
+
+.method-label input[type="radio"]:checked + .method-box {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+    background: var(--primary-lightest);
+}
 
 .card-details-section {
-    border: 1px dashed #007bff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    background-color: #f0f7ff;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* حقول الإدخال */
-input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ced4da;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    display: none;
+    margin-bottom: 30px;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
 .form-row {
@@ -143,24 +104,64 @@ input:focus {
     gap: 20px;
 }
 
-.expiry-group, .cvv-group {
+.form-group {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
-/* زر الدفع */
-.pay-btn {
-    background-color: #274c74;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 0.95rem;
+}
+
+.form-group input {
     width: 100%;
-    font-size: 1.1em;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    padding: 14px 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--dark);
+    transition: var(--transition);
+    outline: none;
+    font-family: inherit;
 }
 
-    .pay-btn:hover {
-        background-color: #274c74d8;
+.form-group input:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background: var(--white);
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    padding-top: 20px;
+    border-top: 2px dashed #e2e8f0;
+    margin-bottom: 30px;
+}
+
+.total-row .price {
+    color: var(--primary);
+}
+
+.submit-btn {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .payment-method-selection {
+        flex-direction: column;
     }
+    .form-card {
+        padding: 30px 20px;
+    }
+}

@@ -1,81 +1,116 @@
-﻿<!DOCTYPE html>
-<html lang="EN">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment process</title>
+    <title>Payment - PureSmile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Home.css">
     <link rel="stylesheet" href="Payment.css">
 </head>
 
-<body>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="Home.html" style="text-decoration:none; color:inherit;"><i class="fa-solid fa-tooth"></i>
+                PureSmile</a>
+        </div>
+        <div class="auth-buttons">
+            <a href="Dashboard.html" id="booking-info-btn" class="btn booking-info-btn">Dashboard</a>
+        </div>
+    </header>
+
     <div class="payment-container">
-        <h1>Payment process</h1>
-        <p>Choose a payment method</p>
+        <div class="form-card">
+            <h1>Payment Details</h1>
+            <p>Please choose a payment method to complete your booking</p>
 
-        <form class="payment-form" id="paymentForm">
+            <form class="payment-form" id="paymentForm">
 
-            <div class="order-summary">
-                <h2>Payment Summary</h2>
-                <div class="summary-item total">
-                    <span>Total amount:</span>
-                    <span class="price">200</span>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="payment-method-selection">
-                <label class="method-label">
-                    <input type="radio" name="payment-method" value="cash" checked>
-                    <span>Cash</span>
-                </label>
-
-                <label class="method-label">
-                    <input type="radio" name="payment-method" value="card">
-                    <span>Credited card</span>
-                </label>
-            </div>
-
-            <div id="card-details" class="card-details-section">
-
-                <div class="form-group">
-                    <label for="card-number">رقم البطاقة:</label>
-                    <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000"
-                        maxlength="16">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group expiry-group">
-                        <label for="expiry-date">تاريخ الانتهاء (شهر/سنة):</label>
-                        <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" maxlength="5">
-                    </div>
-
-                    <div class="form-group cvv-group">
-                        <label for="cvv">رمز التحقق (CVV):</label>
-                        <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3">
+                <div class="order-summary">
+                    <h2>Appointment Summary</h2>
+                    <div class="summary-details" id="summary-details">
+                        <!-- Details injected via JS -->
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="card-holder">اسم حامل البطاقة:</label>
-                    <input type="text" id="card-holder" name="card-holder">
+                <div class="payment-method-selection">
+                    <label class="method-label">
+                        <input type="radio" name="payment-method" value="cash" checked>
+                        <div class="method-box">
+                            <i class="fa-solid fa-money-bill-wave"></i>
+                            <span>Pay at Clinic</span>
+                        </div>
+                    </label>
+
+                    <label class="method-label">
+                        <input type="radio" name="payment-method" value="card">
+                        <div class="method-box">
+                            <i class="fa-regular fa-credit-card"></i>
+                            <span>Credit Card</span>
+                        </div>
+                    </label>
                 </div>
 
-            </div>
+                <div id="card-details" class="card-details-section">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000"
+                            maxlength="19">
+                    </div>
 
-            <button type="submit" class="pay-btn">Payment confirmation</button>
-        </form>
+                    <div class="form-row">
+                        <div class="form-group expiry-group">
+                            <label for="expiry-date">Expiry Date</label>
+                            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" maxlength="5">
+                        </div>
+
+                        <div class="form-group cvv-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="card-holder">Card Holder Name</label>
+                        <input type="text" id="card-holder" name="card-holder" placeholder="John Doe">
+                    </div>
+                </div>
+
+                <div class="total-row">
+                    <span>Total Amount</span>
+                    <span class="price">$200</span>
+                </div>
+
+                <button type="submit" class="submit-btn btn primary-btn">Confirm Payment <i
+                        class="fa-solid fa-check"></i></button>
+            </form>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const cardDetails = document.getElementById('card-details');
             const paymentMethods = document.querySelectorAll('input[name="payment-method"]');
-            const paymentForm = document.getElementById('paymentForm'); // 1. الحصول على نموذج الدفع
+            const paymentForm = document.getElementById('paymentForm');
+
+            // Show appointment data
+            const storedData = localStorage.getItem('userAppointment');
+            if (storedData) {
+                const data = JSON.parse(storedData);
+                document.getElementById('summary-details').innerHTML = `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span style="color:var(--text)">Patient:</span> <b>${data.name}</b></div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span style="color:var(--text)">Department:</span> <b>${data.specialty}</b></div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span style="color:var(--text)">Doctor:</span> <b>${data.doctor}</b></div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span style="color:var(--text)">Date & Time:</span> <b>${data.date} at ${data.time}</b></div>
+                `;
+            }
 
             function toggleCardDetails() {
-                // عرض تفاصيل البطاقة إذا كان الخيار "card"، وإخفائها إذا كان "cash"
                 if (document.querySelector('input[name="payment-method"]:checked').value === 'card') {
                     cardDetails.style.display = 'block';
                 } else {
@@ -83,29 +118,34 @@
                 }
             }
 
-            // إخفاء التفاصيل في البداية (لأن Cash هو الخيار الافتراضي)
             toggleCardDetails();
 
-            // إضافة مستمعي الأحداث عند تغيير الاختيار
             paymentMethods.forEach(radio => {
                 radio.addEventListener('change', toggleCardDetails);
             });
 
-            // 2. إضافة مستمع لحدث إرسال النموذج (Submit)
             if (paymentForm) {
                 paymentForm.addEventListener('submit', (event) => {
-                    event.preventDefault(); // منع الإرسال الافتراضي للنموذج (الذي يسبب إعادة تحميل الصفحة)
-
-                    // *** محاكاة نجاح عملية الدفع ***
-                    // بما أن الدفع قد تم بنجاح، يجب أن نفعّل زر 'معلومات الحجز' في الصفحة الرئيسية
+                    event.preventDefault();
                     localStorage.setItem('hasAppointment', 'true');
-
-                    alert('تم تأكيد الدفع بنجاح! سيتم توجيهك إلى الصفحة الرئيسية.');
-
-                    // الانتقال إلى الصفحة الرئيسية
-                    window.location.href = 'Home.html';
+                    alert('Payment confirmed! Redirecting to dashboard.');
+                    window.location.href = 'Dashboard.html';
                 });
             }
+
+            // Format card number
+            document.getElementById('card-number').addEventListener('input', function (e) {
+                e.target.value = e.target.value.replace(/[^\d]/g, '').replace(/(.{4})/g, '$1 ').trim();
+            });
+
+            // Format expiry date
+            document.getElementById('expiry-date').addEventListener('input', function (e) {
+                let v = e.target.value.replace(/[^\d]/g, '');
+                if (v.length >= 2) {
+                    v = v.substring(0, 2) + '/' + v.substring(2, 4);
+                }
+                e.target.value = v;
+            });
         });
     </script>
 </body>

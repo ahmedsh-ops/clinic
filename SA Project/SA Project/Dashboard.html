@@ -1,267 +1,295 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking status</title>
-
+    <title>Booking Status - PureSmile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Home.css">
     <style>
-        * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: italic;
-}
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 20px;
+        .dashboard-container {
+            padding-top: 120px;
+            padding-bottom: 60px;
             display: flex;
             justify-content: center;
-            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            width: 100%;
+            min-height: calc(100vh - 120px);
         }
 
-        .dashboard-container {
+        .dashboard-card {
+            background: var(--white);
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
             max-width: 800px;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .welcome {
-            width: 94%;
-            top: 0;
-            padding: 15px 50px;
-            position: absolute;
+        .dashboard-card h1 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .appointment-details {
+            background: var(--primary-lightest);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .appointment-details h2 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            color: #adcfe4;
-            z-index: 991;
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(59, 130, 246, 0.3);
+            font-size: 1.05rem;
         }
 
-        .logo {
-            font-size: 50px;
+        .detail-row:last-child {
+            border-bottom: none;
         }
 
-        .logo a {
-            text-decoration: none;
-            color: #adcfe4;
+        .detail-row .label {
+            color: var(--text);
+            font-weight: 500;
         }
 
-        .welcome button {
-            width: 100px;
-            font-size: 15px;
-            padding: 10px 10px 10px 10px;
-            background-color: #274c74;
-            color: #ffffff;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 50rem;
-        }
-
-        .welcome button:hover {
-            background-color: #274c74e1;
-            color: #ffffff;
-            border: none;
-        }
-
-        h1 {
-            color: #274c74;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .appointment-details p {
-            font-size: 1.1em;
-            margin: 10px 0;
-            padding-bottom: 5px;
-            border-bottom: 1px dashed #eee;
-        }
-
-        .appointment-details span {
-            font-weight: bold;
-            color: #4a4a4a;
+        .detail-row .value {
+            color: var(--dark);
+            font-weight: 600;
         }
 
         .action-buttons {
             display: flex;
             gap: 15px;
-            margin-top: 30px;
             justify-content: center;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
+            margin-top: 30px;
         }
 
         .edit-btn {
-            background-color: #ffc107;
-            color: #333;
+            background-color: var(--primary-light);
+            color: var(--white);
         }
 
         .edit-btn:hover {
-            background-color: #e0a800;
+            background-color: var(--primary);
         }
 
         .delete-btn {
-            background-color: #dc3545;
-            color: white;
+            background-color: #ef4444;
+            color: var(--white);
         }
 
         .delete-btn:hover {
-            background-color: #c82333;
+            background-color: #dc2626;
+        }
+
+        /* Edit Form */
+        #edit-form {
+            background: var(--light);
+            padding: 30px;
+            border-radius: var(--radius);
+            margin-top: 20px;
+            border: 1px solid #e5e7eb;
+            animation: fadeIn 0.4s;
+        }
+
+        #edit-form h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .go-home-btn {
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            line-height: 2;
             display: block;
-            margin-top: 20px;
+            text-align: center;
+            margin-top: 30px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
         }
 
         .go-home-btn:hover {
-            background-color: #218838;
-        }
-
-        /* تنسيق نموذج التعديل */
-        #edit-form {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            border: 1px solid #ddd;
-        }
-
-        #edit-form input,
-        #edit-form select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        #edit-form button[type="submit"] {
-            background-color: #274c74;
-            color: white;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        #edit-form button[type="submit"]:hover {
-            background-color: #1e3a5a;
-        }
-
-        .hidden {
-            display: none !important;
+            text-decoration: underline;
         }
     </style>
 </head>
 
-<body>
-    <div id="welcome" class="welcome">
-        <div class="logo"><a id="logo" href="Home.html">PureSmile</a></div>
-        <button>About</button>
-    </div>
-    <div class="dashboard-container">
-        <h1>Control panel and appointments</h1>
+<body class="bg-light">
 
-        <div id="appointment-display" class="appointment-details">
-            <h2>Your booked appointment</h2>
-            <p>Name: <span id="display-name"></span></p>
-            <p>Age: <span id="display-age"></span></p>
-            <p>Specialization: <span id="display-specialty"></span></p>
-            <p>Doctor: <span id="display-doctor"></span></p>
-            <p>Date: <span id="display-date"></span></p>
-            <p>Time: <span id="display-time"></span></p>
-
-            <div class="action-buttons">
-                <button id="editBtn" class="btn edit-btn">Appointment change</button>
-                <button id="deleteBtn" class="btn delete-btn">Cancel appointment</button>
-            </div>
+    <!-- Navbar -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="Home.html" style="text-decoration:none; color:inherit;"><i class="fa-solid fa-tooth"></i>
+                PureSmile</a>
         </div>
+    </header>
 
-        <form id="edit-form" class="hidden">
-            <h2>Update</h2>
-            <div class="form-group">
-                <label for="edit-name">Full name:</label>
-                <input type="text" id="edit-name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="edit-age">Age:</label>
-                <input type="number" id="edit-age" name="age" min="1" max="120" required>
+    <div class="dashboard-container">
+        <div class="dashboard-card">
+            <h1>Patient Dashboard</h1>
+
+            <div id="appointment-display">
+                <div class="appointment-details">
+                    <h2><i class="fa-solid fa-calendar-check"></i> Booked Appointment</h2>
+                    <div class="detail-row">
+                        <span class="label">Patient Name</span>
+                        <span class="value" id="display-name"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Age</span>
+                        <span class="value" id="display-age"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Department</span>
+                        <span class="value" id="display-specialty"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Doctor</span>
+                        <span class="value" id="display-doctor"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Date</span>
+                        <span class="value" id="display-date"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Time</span>
+                        <span class="value" id="display-time"></span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="editBtn" class="btn edit-btn"><i class="fa-solid fa-pen-to-square"></i> Modify</button>
+                    <button id="deleteBtn" class="btn delete-btn"><i class="fa-solid fa-trash-can"></i> Cancel</button>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="edit-specialty">Specialization:</label>
-                <select id="edit-specialty" name="specialty" required>
-                    <option value="الأسنان">الأسنان</option>
-                    <option value="الجلدية">الجلدية</option>
-                    <option value="الباطنية">الباطنية</option>
-                    <option value="الأطفال">الأطفال</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="edit-doctor">Doctor:</label>
-                <select id="edit-doctor" name="doctor" required>
-                    <option value="Dr. Ahmed Khaled">Dr. Ahmed Khaled</option>
-                    <option value="Dr. Fatima Saeed">Dr. Fatima Saeed</option>
-                    <option value="Dr. Muhammad Ali">Dr. Muhammad Ali</option>
-                    <option value="Dr. Noura Fahd">Dr. Noura Fahd</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="edit-date">Choose the date:</label>
-                <input type="date" id="edit-date" name="date" required>
-            </div>
-            <div class="form-group">
-                <label for="edit-time">Choose the time:</label>
-                <input type="time" id="edit-time" name="time" required>
-            </div>
-            <button type="submit" class="btn">Save changes</button>
-            <button type="button" id="cancelEditBtn" class="btn delete-btn">Cancel</button>
-        </form>
+            <form id="edit-form" class="hidden">
+                <h2>Update Details</h2>
+                <div style="display:flex; gap:15px;">
+                    <div class="form-group" style="flex:1;">
+                        <label for="edit-name">Full Name:</label>
+                        <input type="text" id="edit-name" name="name" required>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label for="edit-age">Age:</label>
+                        <input type="number" id="edit-age" name="age" min="1" max="120" required>
+                    </div>
+                </div>
 
-        <a href="Home.html" class="btn go-home-btn">Return to homepage</a>
+                <div style="display:flex; gap:15px;">
+                    <div class="form-group" style="flex:1;">
+                        <label for="edit-specialty">Department:</label>
+                        <select id="edit-specialty" name="specialty" required>
+                            <option value="Dental">Dental Care</option>
+                            <option value="Dermatology">Dermatology</option>
+                            <option value="Internal Medicine">Internal Medicine</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label for="edit-doctor">Doctor:</label>
+                        <select id="edit-doctor" name="doctor" required>
+                            <option value="Dr. Ahmed Khaled">Dr. Ahmed Khaled</option>
+                            <option value="Dr. Fatima Saeed">Dr. Fatima Saeed</option>
+                            <option value="Dr. Muhammad Ali">Dr. Muhammad Ali</option>
+                            <option value="Dr. Noura Fahd">Dr. Noura Fahd</option>
+                        </select>
+                    </div>
+                </div>
 
+                <div style="display:flex; gap:15px;">
+                    <div class="form-group" style="flex:1;">
+                        <label for="edit-date">Date:</label>
+                        <input type="date" id="edit-date" name="date" required>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label for="edit-time">Time:</label>
+                        <input type="time" id="edit-time" name="time" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn primary-btn" style="flex:1;"><i
+                            class="fa-solid fa-floppy-disk"></i> Save changes</button>
+                    <button type="button" id="cancelEditBtn" class="btn delete-btn" style="flex:1;">Discard</button>
+                </div>
+            </form>
+
+            <a href="Home.html" class="go-home-btn"><i class="fa-solid fa-arrow-left"></i> Return to Homepage</a>
+        </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+            }
+
             const displaySection = document.getElementById('appointment-display');
             const editForm = document.getElementById('edit-form');
             const editBtn = document.getElementById('editBtn');
             const deleteBtn = document.getElementById('deleteBtn');
             const cancelEditBtn = document.getElementById('cancelEditBtn');
 
-            // 1. استرجاع وعرض البيانات
             function loadAppointment() {
                 const storedData = localStorage.getItem('userAppointment');
 
                 if (storedData) {
                     const appointment = JSON.parse(storedData);
-
                     displaySection.classList.remove('hidden');
                     editForm.classList.add('hidden');
 
-                    // عرض البيانات الحالية (بما في ذلك الجديدة)
                     document.getElementById('display-name').textContent = appointment.name;
                     document.getElementById('display-age').textContent = appointment.age;
                     document.getElementById('display-specialty').textContent = appointment.specialty;
@@ -269,7 +297,6 @@
                     document.getElementById('display-date').textContent = appointment.date;
                     document.getElementById('display-time').textContent = appointment.time;
 
-                    // ملء نموذج التعديل بالبيانات الحالية (بما في ذلك الجديدة)
                     document.getElementById('edit-name').value = appointment.name;
                     document.getElementById('edit-age').value = appointment.age;
                     document.getElementById('edit-specialty').value = appointment.specialty;
@@ -278,18 +305,13 @@
                     document.getElementById('edit-time').value = appointment.time;
 
                 } else {
-                    // إذا لم يكن هناك موعد محجوز
-                    displaySection.innerHTML = '<h2>لا يوجد لديك موعد محجوز حاليًا.</h2>';
+                    displaySection.innerHTML = '<div style="text-align:center; padding: 40px;"><i class="fa-regular fa-calendar-xmark" style="font-size:3rem; color:#d1d5db; margin-bottom:20px;"></i><h2>You have no upcoming appointments.</h2><a href="Book.html" class="btn primary-btn" style="margin-top:20px;">Book Now</a></div>';
                     editForm.classList.add('hidden');
-                    const actionButtons = document.querySelector('.action-buttons');
-                    if (actionButtons) actionButtons.classList.add('hidden');
                 }
             }
 
-            // تحميل الموعد عند بدء تشغيل الصفحة
             loadAppointment();
 
-            // 2. وظيفة التعديل: عرض النموذج
             if (editBtn) {
                 editBtn.addEventListener('click', () => {
                     displaySection.classList.add('hidden');
@@ -297,18 +319,15 @@
                 });
             }
 
-            // 3. وظيفة التعديل: إخفاء النموذج (إلغاء)
             if (cancelEditBtn) {
                 cancelEditBtn.addEventListener('click', () => {
                     loadAppointment();
                 });
             }
 
-            // 4. وظيفة التعديل: حفظ البيانات الجديدة
             editForm.addEventListener('submit', (event) => {
                 event.preventDefault();
 
-                // جمع البيانات المعدلة (بما في ذلك الجديدة)
                 const updatedAppointmentData = {
                     name: document.getElementById('edit-name').value,
                     age: document.getElementById('edit-age').value,
@@ -318,30 +337,22 @@
                     time: document.getElementById('edit-time').value
                 };
 
-                // حفظ البيانات المعدلة في localStorage
                 localStorage.setItem('userAppointment', JSON.stringify(updatedAppointmentData));
-
-                alert('تم حفظ التعديلات بنجاح! ✅');
-
-                // إعادة تحميل العرض
+                alert('Changes saved successfully! ✅');
                 loadAppointment();
             });
 
 
-            // 5. وظيفة الحذف
             if (deleteBtn) {
                 deleteBtn.addEventListener('click', () => {
-                    if (confirm('هل أنت متأكد من رغبتك في حذف الموعد؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                    if (confirm('Are you sure you want to cancel your appointment? This action cannot be undone.')) {
                         localStorage.removeItem('userAppointment');
                         localStorage.removeItem('hasAppointment');
-
-                        alert('تم حذف الموعد بنجاح. سيتم الآن توجيهك إلى الصفحة الرئيسية.');
-
+                        alert('Appointment canceled. Redirecting to home...');
                         window.location.href = 'Home.html';
                     }
                 });
             }
-
         });
     </script>
 </body>
