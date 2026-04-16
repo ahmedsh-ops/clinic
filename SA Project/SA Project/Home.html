@@ -35,11 +35,13 @@
         <div class="hero-content">
             <div class="badge">Advanced Medical Clinic</div>
             <h1>Your health is our top priority</h1>
-            <p>Start your journey to better health by booking your appointment with world-class specialists using state-of-the-art facilities.</p>
+            <p>Start your journey to better health by booking your appointment with world-class specialists using
+                state-of-the-art facilities.</p>
             <div class="action-buttons">
-                <a href="Book.html" id="bookNowBtn" class="btn primary-btn">Book an Appointment <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="Book.html" id="bookNowBtn" class="btn primary-btn">Book an Appointment <i
+                        class="fa-solid fa-arrow-right"></i></a>
             </div>
-            
+
             <div class="hero-stats">
                 <div class="stat">
                     <h3>15+</h3>
@@ -105,7 +107,8 @@
         <div class="about-content">
             <div class="badge">Meet Our Team</div>
             <h2>Dedicated to providing excellent healthcare</h2>
-            <p>Our team of dedicated professionals has unparalleled expertise and a true passion toward providing the highest quality healthcare explicitly tailored to your individual needs.</p>
+            <p>Our team of dedicated professionals has unparalleled expertise and a true passion toward providing the
+                highest quality healthcare explicitly tailored to your individual needs.</p>
             <ul class="features-list">
                 <li><i class="fa-solid fa-circle-check"></i> 24/7 Emergency Support</li>
                 <li><i class="fa-solid fa-circle-check"></i> Certified Professionals</li>
@@ -131,7 +134,8 @@
                 <div class="logo">
                     <i class="fa-solid fa-tooth"></i> PureSmile
                 </div>
-                <p>Providing reliable and advanced healthcare services to help you achieve better living and optimal health.</p>
+                <p>Providing reliable and advanced healthcare services to help you achieve better living and optimal
+                    health.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -212,11 +216,11 @@
                     // إذا كان مسجلاً للدخول، لن يتم استدعاء preventDefault وسيتم الانتقال إلى Book.html بشكل طبيعي
                 });
             }
-            
+
             // إضافة سكرول سلس
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    if(this.getAttribute('href') !== '#'){
+                    if (this.getAttribute('href') !== '#') {
                         e.preventDefault();
                         document.querySelector(this.getAttribute('href')).scrollIntoView({
                             behavior: 'smooth'
